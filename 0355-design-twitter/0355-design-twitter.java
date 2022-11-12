@@ -16,7 +16,6 @@ class Twitter {
         newTweet.add(userId);
         newTweet.add(tweetId);
         tweets.add(newTweet);
-        System.out.println("tweet " + tweetId + " has been created by " + userId);
         return;
     }
     
@@ -33,19 +32,16 @@ class Twitter {
             newsFeed.add(currentTweetId);
             if (newsFeed.size() >= 10) break;
         }
-        System.out.println("returning newsFeed for " + userId);
         return newsFeed;
     }
     
     public void follow(int followerId, int followeeId) {
         followingInfo.get(followerId).add(followeeId);
-        System.out.println(followerId + " is now following " + followeeId);
         return;
     }
     
     public void unfollow(int followerId, int followeeId) {
         followingInfo.get(followerId).remove(followeeId);
-        System.out.println(followerId + " is now unfollowing " + followeeId);
         return;
     }
 }
