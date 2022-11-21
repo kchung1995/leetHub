@@ -19,6 +19,7 @@ public:
                 if (temp == target) {
                     result.push_back(numsPair[i].second);
                     result.push_back(numsPair[j].second);
+                    foundAnswer = true;
                     break;
                 }
             }
