@@ -1,4 +1,9 @@
 class Solution {
+private:
+    static bool pairCmp(pair<int, int> a, pair<int, int> b) {
+        return a.first < b.first;
+    }
+    
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         
@@ -8,7 +13,7 @@ public:
             numsPair.push_back({nums[i], i});
         }
         
-        sort(numsPair.begin(), numsPair.end());
+        sort(numsPair.begin(), numsPair.end(), pairCmp);
         
         vector<int> result;
         bool foundAnswer = false;
