@@ -21,10 +21,10 @@ public:
                 if (nx < 0 || nx >= grid.size() || ny < 0 || ny >= grid[0].size()) {
                     continue;
                 }
-                if (visited[nx][ny]) {
+                if (grid[nx][ny] != 1) {
                     continue;
                 }
-                if (grid[nx][ny] != 1) {
+                if (visited[nx][ny]) {
                     continue;
                 }
                 visited[nx][ny] = true;
