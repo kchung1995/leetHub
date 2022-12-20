@@ -1,10 +1,9 @@
 class Solution {
+private:
+    int dx[4] = {-1, 0, 1, 0};
+    int dy[4] = {0, 1, 0, -1};
 public:
-    
-    int bfs(int &i, int &j, vector<vector<int>> &grid, vector<vector<bool>> &visited) {
-        int dx[4] = {-1, 0, 1, 0};
-        int dy[4] = {0, 1, 0, -1};
-        
+    int bfs(int &i, int &j, vector<vector<int>> &grid, vector<vector<bool>> &visited) { 
         visited[i][j] = true;
         int size = 1;
         queue<pair<int, int> > q;
