@@ -1,9 +1,5 @@
 class Solution {
 public:
-    
-    int dx[4] = {-1, 0, 1, 0};
-    int dy[4] = {0, 1, 0, -1};
-    
     bool isInBoundary(int &x, int &y, int &height, int &width) {
         if (0<= x && x < height && 0 <= y && y < width) {
             return true;
@@ -15,6 +11,9 @@ public:
         int result = 0;
         int height = grid.size();
         int width = grid[0].size();
+        int dx[4] = {-1, 0, 1, 0};
+        int dy[4] = {0, 1, 0, -1};
+        
         for (int dir = 0; dir < 4; dir++) {
             int nx = x + dx[dir];
             int ny = y + dy[dir];
@@ -51,6 +50,8 @@ public:
         queue<pair<int, int>> q;
         q.push(start);
         isVisited[q.front().first][q.front().second] = true;
+        int dx[4] = {-1, 0, 1, 0};
+        int dy[4] = {0, 1, 0, -1};
         
         while(!q.empty()) {
             int cx = q.front().first;
