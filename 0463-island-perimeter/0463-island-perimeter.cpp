@@ -1,5 +1,8 @@
 class Solution {
 public:
+    int dx[4] = {-1, 0, 1, 0};
+    int dy[4] = {0, 1, 0, -1};
+    
     bool isInBoundary(int &x, int &y, int &height, int &width) {
         if (0<= x && x < height && 0 <= y && y < width) {
             return true;
@@ -11,8 +14,6 @@ public:
         int result = 0;
         int height = grid.size();
         int width = grid[0].size();
-        int dx[4] = {-1, 0, 1, 0};
-        int dy[4] = {0, 1, 0, -1};
         
         for (int dir = 0; dir < 4; dir++) {
             int nx = x + dx[dir];
@@ -63,14 +64,8 @@ public:
             for (int dir = 0; dir < 4; dir++) {
                 int nx = cx + dx[dir];
                 int ny = cy + dy[dir];
-                
-                if (!isInBoundary(nx, ny, height, width)) {
-                    continue;
-                }
-                if (grid[nx][ny] == 0) {
-                    continue;
-                }
-                if (isVisited[nx][ny]) {
+
+                if (!isInBoundary(nx, ny, height, width) || grid[nx][ny] == 0 || isVisited[nx][ny]) {
                     continue;
                 }
                 isVisited[nx][ny] = true;
