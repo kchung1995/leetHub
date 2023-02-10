@@ -1,6 +1,6 @@
 class Solution {
-    fun smallestEvenMultiple(n: Int): Int {
-        if (n % 2 == 0) return n
-        return n * 2
+    fun smallestEvenMultiple(n: Int) = when (n % 2 == 0) {
+        true -> n
+        false -> n * 2
     }
 }
