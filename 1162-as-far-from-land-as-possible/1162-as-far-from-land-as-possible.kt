@@ -1,8 +1,9 @@
 class Solution {
     
     data class Position(val x: Int, val y: Int)
-    val dx = intArrayOf(1, 0, -1, 0)
-    val dy = intArrayOf(0, 1, 0, -1)
+    enum class Direction(val x: Int, val y: Int) {
+        U(-1, 0), D(1, 0), L(0, -1), R(0, 1)
+    }
     val INF = 999999999
     
     fun isInBoundary(pos: Position, x: Int, y: Int): Boolean {
@@ -20,11 +21,11 @@ class Solution {
                 else -> dist[current.x][current.y] + 1
             }
             
-            for (dir in 0 until 4) {
-                val next = Position(current.x + dx[dir], current.y + dy[dir])
-                if (!isInBoundary(next, grid.size, grid[0].size)) continue
-                if (grid[next.x][next.y] == 1) continue
-                if (dist[next.x][next.y] <= nextDistance) continue
+            Direction.values().forEach { dir ->
+                val next = Position(current.x + dir.x, current.y + dir.y)
+                if (!isInBoundary(next, grid.size, grid[0].size)) return@forEach
+                if (grid[next.x][next.y] == 1) return@forEach
+                if (dist[next.x][next.y] <= nextDistance) return@forEach
                 
                 dist[next.x][next.y] = nextDistance
                 result = maxOf(result, dist[next.x][next.y])
@@ -41,12 +42,12 @@ class Solution {
         
         for (i in 0 until grid.size) {
             for (j in 0 until grid[0].size) {
-                if (grid[i][j] == 1) {
-                    lands.add(Position(i, j))
-                    dist[i][j] = -1
-                }
-                else {
-                    dist[i][j] = INF
+                when(grid[i][j]) {
+                    1 -> {
+                        lands.add(Position(i, j))
+                        dist[i][j] = -1
+                    }
+                    else -> dist[i][j] = INF
                 }
             }
         }
