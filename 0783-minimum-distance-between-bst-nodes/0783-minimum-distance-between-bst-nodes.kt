@@ -9,24 +9,22 @@
  * }
  */
 class Solution {
-    fun treeTraversalDfs(root: TreeNode?, nums: MutableList<Int>) {
+    
+    var INF: Int = Integer.MAX_VALUE
+    var prevRootValue: Int = INF
+    var result: Int = INF
+    
+    fun findMinimumDifferenceDfs(root: TreeNode?) {
         if (root == null) return
-        nums.add(root.`val`)
-        treeTraversalDfs(root.left, nums)
-        treeTraversalDfs(root.right, nums)
+        if (root.left != null) findMinimumDifferenceDfs(root.left)
+        if (prevRootValue != INF) result = minOf(result, root.`val` - prevRootValue)
+        prevRootValue = root.`val`
+        if (root.right != null) findMinimumDifferenceDfs(root.right)
         return
     }
     
     fun minDiffInBST(root: TreeNode?): Int {
-        val nums = mutableListOf<Int>()
-        treeTraversalDfs(root, nums)
-        nums.sort()
-        
-        var result: Int = 100001
-        for (i in 0 until nums.size - 1) {
-            result = minOf(result, nums[i+ 1] - nums[i])
-        }
-        
+        findMinimumDifferenceDfs(root)
         return result
     }
 }
