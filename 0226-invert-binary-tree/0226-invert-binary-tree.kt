@@ -11,9 +11,8 @@
 class Solution {
     fun treeInvertDfs(root: TreeNode?): TreeNode? {
         if (root == null) return null
-        val tempLeft = root.left
         root.left = treeInvertDfs(root.right)
-        root.right = treeInvertDfs(tempLeft)
+            .also { root.right = treeInvertDfs(root.left) }
         return root
     }
     
