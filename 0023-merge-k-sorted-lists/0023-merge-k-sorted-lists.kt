@@ -21,16 +21,19 @@ class Solution {
         return node
     }
     
-    fun mergeKLists(lists: Array<ListNode?>): ListNode? {
-        if (lists.size == 0) return null
+    fun isAllNodesNull(lists: Array<ListNode?>): Boolean {
         var isAllNull = true
         for (i in lists) {
             if (i != null) isAllNull = false
         }
-        if (isAllNull) return null
+        return isAllNull
+    }
+    
+    fun mergeKLists(lists: Array<ListNode?>): ListNode? {
+        if (lists.size == 0) return null
+        if (isAllNodesNull(lists)) return null
         
         val pq = PriorityQueue<Int>()
-        
         for (i in lists) {
             getLinkedListValue(i, pq)
         }
