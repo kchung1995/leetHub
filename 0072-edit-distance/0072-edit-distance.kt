@@ -2,7 +2,6 @@ class Solution {
     val MAX_N = 501
     
     fun minDistance(word1: String, word2: String): Int {
-        // val editDistance: List<List<Int>> = ArrayList<ArrayList<Int>>(MAX_N)
         val editDistance = Array(MAX_N) { IntArray(MAX_N) }
         editDistance[0][0] = 0
         
