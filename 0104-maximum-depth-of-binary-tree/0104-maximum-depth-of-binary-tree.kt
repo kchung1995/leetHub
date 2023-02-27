@@ -9,13 +9,12 @@
  * }
  */
 class Solution {
-    fun explore(root: TreeNode?, depth: Int): Int {
-        if (root == null) return 0
-        if (root.left == null && root.right == null) return depth
-        return maxOf(explore(root.left, depth + 1), explore(root.right, depth + 1))
+    fun getDepth(root: TreeNode?, currentDepth: Int): Int {
+        if (root == null) return currentDepth
+        return maxOf(getDepth(root.left, currentDepth + 1), getDepth(root.right, currentDepth + 1))
     }
-
+    
     fun maxDepth(root: TreeNode?): Int {
-        return explore(root, 1)
+        return getDepth(root, 0)
     }
 }
