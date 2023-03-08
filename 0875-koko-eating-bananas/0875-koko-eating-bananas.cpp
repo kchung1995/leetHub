@@ -8,9 +8,8 @@ public:
     }
     
     int minEatingSpeed(vector<int>& piles, int h) {
-        sort(piles.begin(), piles.end());
         int left = 1;
-        int right = piles[piles.size() - 1];
+        int right = *max_element(piles.begin(), piles.end());
         
         while (left < right) {
             int k = left + ((right - left) / 2);
