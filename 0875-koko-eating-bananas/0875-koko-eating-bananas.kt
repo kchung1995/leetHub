@@ -1,8 +1,8 @@
 class Solution {
-    fun getRounding(bananas: Int, k: Int): Int = 
-        when (bananas % k) {
-            0 -> (bananas / k)
-            else -> (bananas / k) + 1
+    fun getRounding(banana: Int, k: Int): Int = 
+        when (banana % k) {
+            0 -> (banana / k)
+            else -> (banana / k) + 1
         }
     
     fun minEatingSpeed(piles: IntArray, h: Int): Int {
@@ -12,7 +12,15 @@ class Solution {
         
         while (left < right) {
             val k = left + ((right - left) / 2)
-            val sum = piles.map { getRounding(it, k) }.sum()
+            
+            var sum: Int = 0
+            for (i in piles) {
+                sum += getRounding(i, k)
+                if (sum > h) {
+                    left = k + 1
+                    continue
+                }
+            }
             
             when (sum > h) {
                 true -> left = k + 1
