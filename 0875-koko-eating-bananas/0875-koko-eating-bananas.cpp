@@ -9,7 +9,7 @@ public:
             
             int sum = 0;
             for (auto &i : piles) {
-                sum += (int)ceil((double)i / k);
+                sum += ceil((double)i / k);
                 if (sum > h) {
                     left = k + 1;
                     continue;
