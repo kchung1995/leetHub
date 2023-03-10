@@ -9,8 +9,7 @@
  */
 class Solution(val head: ListNode?) {
     fun getRandom(): Int {
-        val depth: Int = getDepth(head)
-        return getValue(head, (0 until depth).random(), 0)
+        return getValue(head, (0 until getDepth(head)).random(), 0)
     }
     
     fun getDepth(currentHead: ListNode?): Int {
