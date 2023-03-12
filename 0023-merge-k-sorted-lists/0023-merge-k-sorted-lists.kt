@@ -22,11 +22,10 @@ class Solution {
     }
     
     fun isAllNodesNull(lists: Array<ListNode?>): Boolean {
-        var isAllNull = true
         for (i in lists) {
-            if (i != null) isAllNull = false
+            if (i != null) return false
         }
-        return isAllNull
+        return true
     }
     
     fun mergeKLists(lists: Array<ListNode?>): ListNode? {
