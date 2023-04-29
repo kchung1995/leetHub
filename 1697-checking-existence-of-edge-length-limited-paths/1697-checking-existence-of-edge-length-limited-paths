@@ -1,0 +1,48 @@
+class Solution {
+    fun distanceLimitedPathsExist(n: Int, edgeList: Array<IntArray>, queries: Array<IntArray>): BooleanArray {
+        val unionFind = UnionFind(n)
+        val queryIndex = queries.indices.sortedBy { queries[it][2] }
+        val edgeIndex = edgeList.indices.sortedBy { edgeList[it][2] }
+
+        val result = BooleanArray(queries.size)
+
+        var i: Int = 0
+        for (j in queryIndex) {
+            while (i < edgeList.size && edgeList[edgeIndex[i]][2] < queries[j][2]) {
+                val (u, v, w) = edgeList[edgeIndex[i++]]
+                unionFind.union(u, v)
+            }
+            result[j] = unionFind.find(queries[j][0]) == unionFind.find(queries[j][1])
+        }
+
+        return result
+    }
+
+    private class UnionFind(size: Int) {
+        val parent = IntArray(size) { it }
+        val rank = IntArray(size)
+
+        fun find(x: Int): Int {
+            if (parent[x] != x) {
+                parent[x] = find(parent[x])
+            }
+            return parent[x]
+        }
+
+        fun union(x: Int, y: Int) {
+            val rootX = find(x)
+            val rootY = find(y)
+            if (rootX != rootY) {
+                when {
+                    rank[rootX] < rank[rootY] -> parent[rootX] = rootY
+                    rank[rootY] < rank[rootX] -> parent[rootY] = rootX
+                    else -> {
+                        parent[rootY] = rootX
+                        rank[rootX]++
+                    }
+                }
+            }
+        }
+    }
+}
+
